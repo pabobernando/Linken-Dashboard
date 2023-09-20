@@ -11,14 +11,14 @@ export const useDenomCosmos = create((set) => ({
         exponent: "6"
       },
       {
-        denom: 'ibc/5D270A584B1078FBE07D14570ED5E88EC1FEDA8518B76C322606291E6FD8286F',
-        name: 'arUSD',
-        logo: "https://app.osmosis.zone/tokens/arusd.svg",
-        exponent: "18"
+        denom: 'ibc/14F9BC3E44B8A9C1BE1FB08980FAB87034C9905EF17CF2F5008FC085218811CC',
+        name: 'OSMO',
+        logo: "https://raw.githubusercontent.com/cosmos/chain-registry/master/osmosis/images/osmo.svg",
+        exponent: "6"
       },
       {
-        denom: 'ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2',
-        name: 'ATOM',
+        denom: 'ibc/E55D3D529D45DB5A1955ACE20F6B36BDB8D35BD0BB1FA8FB93AEB8AC17E21561',
+        name: 'ATOM / Bostrom',
         logo: "https://raw.githubusercontent.com/cosmos/chain-registry/master/cosmoshub/images/atom.svg",
         exponent: "6"
       },

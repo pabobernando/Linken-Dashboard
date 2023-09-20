@@ -1,12 +1,12 @@
 import { create } from 'zustand'
 
 
-export const useDenomCrescent = create((set) => ({
+export const useDenomIris = create((set) => ({
   renameDenom(denom) {
     const names = [
       {
-        denom: 'ucre',
-        name: 'CRE',
+        denom: 'uiris',
+        name: 'IRIS',
         logo: "https://static-resources.crescent.network/CRE.png",
         exponent: "6"
       },

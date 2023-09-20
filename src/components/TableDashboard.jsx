@@ -6,6 +6,7 @@ import { useChartBalance } from '../store/chart-balance'
 import { useDenomOsmo } from "../store/osmosis";
 import { useDenomCosmos } from "../store/cosmos";
 import { useDenomCrescent } from "../store/crescent";
+import { useDenomIris } from "../store/iris";
 
 const statuses = { Completed: 'text-green-400 bg-green-400/10', Error: 'text-rose-400 bg-rose-400/10' }
 
@@ -25,6 +26,7 @@ export default function TableDashboard() {
   const { renameDenom: renameDenomOsmo } = useDenomOsmo();
   const { renameDenom: renameDenomCosmos } = useDenomCosmos();
   const { renameDenom: renameDenomCrescent } = useDenomCrescent();
+  const { renameDenom: renameDenomIris } = useDenomIris();
   
 
   const chainConfig =[
@@ -77,6 +79,8 @@ export default function TableDashboard() {
         renamedDenom = renameDenomCosmos(bal.denom);
       } else if (chainId === "crescent-1") {
         renamedDenom = renameDenomCrescent(bal.denom);
+      }  else if (chainId === "irishub-1") {
+        renamedDenom = renameDenomIris(bal.denom);
       }
       
       let adjustedAmount = bal.amount;
@@ -133,7 +137,7 @@ export default function TableDashboard() {
 
     
   return (
-    <div className="bg-gray-900 py-10">
+    <div className="min-h-screen bg-gray-900 py-10">
       <div className="grid grid-cols-6">
       {chainConfig.map((chain) => (
         <div className="flex justify-center">
