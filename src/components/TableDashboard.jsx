@@ -7,6 +7,7 @@ import { useDenomOsmo } from "../store/osmosis";
 import { useDenomCosmos } from "../store/cosmos";
 import { useDenomCrescent } from "../store/crescent";
 import { useDenomIris } from "../store/iris";
+import { useDenomEvmos } from "../store/evmos";
 
 const statuses = { Completed: 'text-green-400 bg-green-400/10', Error: 'text-rose-400 bg-rose-400/10' }
 
@@ -27,6 +28,7 @@ export default function TableDashboard() {
   const { renameDenom: renameDenomCosmos } = useDenomCosmos();
   const { renameDenom: renameDenomCrescent } = useDenomCrescent();
   const { renameDenom: renameDenomIris } = useDenomIris();
+  const { renameDenom: renameDenomEvmos } = useDenomEvmos();
   
 
   const chainConfig =[
@@ -81,6 +83,8 @@ export default function TableDashboard() {
         renamedDenom = renameDenomCrescent(bal.denom);
       }  else if (chainId === "irishub-1") {
         renamedDenom = renameDenomIris(bal.denom);
+      } else if (chainId === "evmos_9001-2") {
+        renamedDenom = renameDenomEvmos(bal.denom);
       }
       
       let adjustedAmount = bal.amount;
@@ -136,7 +140,7 @@ export default function TableDashboard() {
   }, []);
 
     
-  return (
+  return (  
     <div className="min-h-screen bg-gray-900 py-10">
       <div className="grid grid-cols-6">
       {chainConfig.map((chain) => (
@@ -174,7 +178,7 @@ export default function TableDashboard() {
       <div className="grid grid-cols-2 border border-cyan-500 mt-1 shadow-lg shadow-blue-500/50 rounded-lg">
         <div className="py-5 mx-auto content-center">
           <h1 className="text-7xl text-white py-8">Total Assets</h1>
-          <h1 className="text-7xl text-gray-300 py-8 ">$ 22003</h1>
+          <h1 className="text-7xl text-gray-300 py-8 ">$ 32003</h1>
         </div>
         <div className="py-5 mx-auto">
           <ChartOsmo />

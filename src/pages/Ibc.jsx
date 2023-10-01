@@ -15,8 +15,9 @@ import Content from '../components/ContentDashboard'
 import { SigningStargateClient } from '@cosmjs/stargate'
 import Linken from '../assets/linken.png'
 import { Link } from 'react-router-dom'
+import ContentIbc from '../components/ContentIbc'
 
-export default function Dashboard() {
+export default function Ibc() {
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (
@@ -153,8 +154,7 @@ export default function Dashboard() {
             />
           </a>
         </div>
-
-        <Content />
+        <ContentIbc />
       </div>
     </>
   )

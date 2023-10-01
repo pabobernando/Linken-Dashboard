@@ -19,7 +19,7 @@ const navigation = [
   { name: 'Dashboard', href: '#', icon: ChartBarIcon, current: true },
   { name: 'Price', href: '#', icon: CurrencyDollarIcon, current: false },
   { name: 'Swap', href: '#', icon: ArrowsRightLeftIcon, current: false },
-  { name: 'Bridge', href: '#', icon: ArrowsPointingOutIcon, current: false },
+  { name: 'Ibc', href: '#', icon: ArrowsPointingOutIcon, current: false },
   { name: 'Relayer', href: '#', icon: UserIcon, current: false },
 ]
 const teams = [

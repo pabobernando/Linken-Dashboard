@@ -79,7 +79,7 @@ export default function Price() {
                                 <Link to="/"><li>Dashboard</li></Link>
                                 <Link to="/price"><li>Price</li></Link>
                                 <Link to="/swap"><li>Swap</li></Link>
-                                <Link to="/bridge"><li>Bridge</li></Link>
+                                <Link to="/ibc"><li>Ibc Send</li></Link>
                                 <Link to="/relayer"><li>Relayer</li></Link>
                             </ul>
                         </li>
@@ -109,7 +109,7 @@ export default function Price() {
                 <Link className='group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold text-gray-400 hover:text-white hover:bg-gray-800' to="/"><ChartBarIcon className='h-6 w-6 shrink-0' aria-hidden="true"/><li className='text-gray-400 hover:text-white hover:bg-gray-800'>Dashboard</li></Link>
                 <Link className='group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold text-gray-400 hover:text-white hover:bg-gray-800' to="/price"><CurrencyDollarIcon className='h-6 w-6 shrink-0' aria-hidden="true"/><li className='text-gray-400 hover:text-white hover:bg-gray-800'>Price</li></Link>
                 <Link className='group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold text-gray-400 hover:text-white hover:bg-gray-800' to="/swap"><ArrowsRightLeftIcon className='h-6 w-6 shrink-0' aria-hidden="true"/><li className='text-gray-400 hover:text-white hover:bg-gray-800'>Swap</li></Link>
-                <Link className='group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold text-gray-400 hover:text-white hover:bg-gray-800' to="/bridge"><ArrowsPointingOutIcon className='h-6 w-6 shrink-0' aria-hidden="true"/><li className='text-gray-400 hover:text-white hover:bg-gray-800'>Bridge</li></Link>
+                <Link className='group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold text-gray-400 hover:text-white hover:bg-gray-800' to="/ibc"><ArrowsPointingOutIcon className='h-6 w-6 shrink-0' aria-hidden="true"/><li className='text-gray-400 hover:text-white hover:bg-gray-800'>Ibc Send</li></Link>
                 <Link className='group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold text-gray-400 hover:text-white hover:bg-gray-800' to="/relayer"><UserIcon className='h-6 w-6 shrink-0' aria-hidden="true"/><li className='text-gray-400 hover:text-white hover:bg-gray-800'>Relayer</li></Link>
                 </ul>
                 <li>

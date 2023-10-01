@@ -1,31 +1,31 @@
 import { create } from 'zustand'
 
 
-export const useDenomIris = create((set) => ({
+export const useDenomEvmos = create((set) => ({
   renameDenom(denom) {
     const names = [
       {
-        denom: 'uiris',
-        name: 'IRIS',
-        logo: "https://www.irisnet.org/resources/COINSWAP/coins/iris.png",
+        denom: 'aevmos',
+        name: 'EVMOS',
+        logo: "https://raw.githubusercontent.com/cosmos/chain-registry/master/evmos/images/evmos.svg",
+        exponent: "18"
+      },
+      {
+        denom: 'ibc/7FBDBEEEBA9C50C4BCDF7BF438EAB99E64360833D240B32655C96E319559E911',
+        name: 'USDCgrv',
+        logo: "https://static-resources.crescent.network/USDC.png",
         exponent: "6"
       },
       {
-        denom: 'ibc/6DF82C1C886C15A5D1F514D30318C7C1431B08EABE7658E6A582CCFC52D8E0AB',
-        name: 'IOV',
-        logo: "https://www.irisnet.org/resources/COINSWAP/coins/iov.png",
+        denom: 'ibc/0634D0993744740D675AD01E81156EAC945AEAAE17C074918DC7FF52F41B263E',
+        name: 'AXELAR',
+        logo: "https://static-resources.crescent.network/AXL.png",
         exponent: "6"
       },
       {
-        denom: 'ibc/DDC0CE4852A53B1D3A6BF056CBB59701AC8E91798028CD7C2A7F490A753F8A88',
-        name: 'GRAVITY',
-        logo: "https://www.irisnet.org/resources/COINSWAP/coins/grav.png",
-        exponent: "6"
-      },
-      {
-        denom: 'htltbcbnb',
-        name: 'htltbcBNB',
-        logo: "https://www.irisnet.org/resources/COINSWAP/coins/bnb.png",
+        denom: 'ibc/10A0DD366A472B098DFD93FBAE62E65DA387F314872C4AD3AE43185154738D8D',
+        name: 'MARS',
+        logo: "https://cre-static-assets.s3.amazonaws.com/MARS.png",
         exponent: "0"
       },
       {
