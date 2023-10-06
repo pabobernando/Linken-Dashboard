@@ -96,55 +96,54 @@ function TableIbc() {
     },
   ]
 
-  const [prices, setPrices] = useState([]);
-  const [address, setAddress] = useState()
-  const [allBalances, setAllBalances] = useState([])
-  const [configAddr, setConfigAddr] = useState({
-    ...chainConfig[0]
-  })
-  const [recipientAddress, setRecipientAddress] = useState("");  
+  const [address, setAddress] = useState("");
+  const [recipientAddress, setRecipientAddress] = useState("");
   const [feeAmount, setFeeAmount] = useState(chainConfig[0].fee.amount[0].amount);
   const [feeDenom, setFeeDenom] = useState(chainConfig[0].fee.amount[0].denom);
+  const [transferAmount, setTransferAmount] = useState();
+  const configAddr = chainConfig[0];
+  const chainId = configAddr.chainId;
 
 
   const sendIbcTokens = async () => {
-
     try {
-      if (!window.getOfflineSigner || !window.keplr){
-        alert('Please Install Keplr');
+      if (!window.getOfflineSigner || !window.keplr) {
+        alert("Please Install Keplr");
         return;
       }
 
-      const chainId = configAddr.chainId
-      const rpcUrl = configAddr.rpcUrl
-      const fee = configAddr.fee
-      const recipientAddress2 = recipientAddress
-
-      await window.keplr.enable(chainId)
-
-      const offlineSigner = window.getOfflineSigner(chainId)
-
+      const offlineSigner = window.getOfflineSigner(chainId);
       const accounts = await offlineSigner.getAccounts();
-      const address = accounts[0].address;
+      const senderAddress = accounts[0].address;
+
+      const rpcUrl = configAddr.rpcUrl;
+      const fee = configAddr.fee;
+      const recipientAddress2 = recipientAddress;
+
+      await window.keplr.enable(chainId);
+
       const client = await SigningStargateClient.connectWithSigner(
-        rpcUrl, offlineSigner
-      )
-      const senderAddress = address;
-      const transferAmount = {
-        denom: "uatom",
-        amount: '10000'
-      }
-      const sourcePort = "transfer"; 
-      const sourceChannel = "channel-141"; 
-      const timeoutHeight = 17100000; 
-      const timeoutTimestamp = 1726927555000; 
+        rpcUrl,
+        offlineSigner
+      );
+
+      const balances = await client.getAllBalances(senderAddress);
+      console.log("iki balance e", balances);
+
+      const transferAmountObj = {
+        denom: feeDenom, // Menggunakan denom dari feeDenom
+        amount: transferAmount, // Menggunakan nilai dari transferAmount
+      };
+      const sourcePort = "transfer";
+      const sourceChannel = "channel-141";
+      const timeoutHeight = 17100000;
+      const timeoutTimestamp = 1726927555000;
       const memo = "Desolator | Linken";
 
-      
       const response = await client.sendIbcTokens(
         senderAddress,
         recipientAddress2,
-        transferAmount,
+        transferAmountObj,
         sourcePort,
         sourceChannel,
         timeoutHeight,
@@ -154,11 +153,12 @@ function TableIbc() {
       );
 
       console.log(response);
-      assertIsDeliverTxSuccess(response)
+      assertIsDeliverTxSuccess(response);
     } catch (error) {
       console.error("Error sending IBC tokens:", error);
     }
   };
+  
 
   useEffect(() => {
     setFeeAmount(configAddr.fee.amount[0].amount);
@@ -185,30 +185,7 @@ function TableIbc() {
         </div>   
       ))}
     </div>
-    {/* <h1 className="text-3xl text-white mt-5 font-black">From - {configAddr.name}</h1>   */}
-      {/* <div className="flex-grow overflow-y-auto">
-      <input
-        type="text"
-        placeholder="Recipient Address"
-        value={recipientAddress}
-        onChange={(e) => setRecipientAddress(e.target.value)}
-        className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 flex-grow"
-      />
-      <input
-  type="text"
-  placeholder="Fee Amount"
-  value={`${configAddr.fee.amount[0].amount} (${configAddr.fee.amount[0].denom}) `}
-  className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
-/>
 
-      <button
-        onClick={sendIbcTokens}
-        className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-300 ease-in-out"
-      >
-        Begin Transfer
-      </button>
-
-      </div> */}
       {/* iki */}
       <div className="mx-auto grid max-w-7xl grid-cols-1 lg:grid-cols-2">
         <div className="relative px-6 pb-20 pt-24 sm:pt-32 lg:static lg:px-8 lg:py-48">
@@ -263,17 +240,6 @@ function TableIbc() {
                   Desolator
                 </dd>
               </div>
-              {/* <div className="flex gap-x-4">
-                <dt className="flex-none">
-                  <span className="sr-only">Email</span>
-                  <UserIcon className="h-7 w-6 text-gray-400" aria-hidden="true" />
-                </dt>
-                <dd>
-                  <a className="hover:text-white" href="mailto:hello@example.com">
-                    Yosemite
-                  </a>
-                </dd>
-              </div> */}
               <div className="flex gap-x-4">
                 <dt className="flex-none">
                   <span className="sr-only">Email</span>
@@ -326,6 +292,8 @@ function TableIbc() {
                 </label>
                 <div className="mt-2.5">
                   <input
+                  value={transferAmount}
+                  onChange={(e) => setTransferAmount(e.target.value)}
                     className="block w-full rounded-md border-0 bg-white/5 px-3.5 py-2 text-white shadow-sm ring-1 ring-inset ring-white/10 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
                   />
                 </div>

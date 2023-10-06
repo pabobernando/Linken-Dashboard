@@ -39,6 +39,12 @@ export const useDenomIris = create((set) => ({
         name: 'grvUSDC',
         logo: "https://static-resources.crescent.network/USDC.png",
         exponent: "6"
+      },
+      {
+        denom: 'ibc/E244B968EE0D1EC047E7516F6ABECE7B68E9FD93B4BD8D08D13642247416BB17',
+        name: 'WETHGrav',
+        logo: "https://app.osmosis.zone/tokens/eth-white.svg",
+        exponent: "18"
       }
     ];
   
