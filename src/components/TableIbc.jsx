@@ -1,107 +1,16 @@
 import { useState, useEffect } from "react";
 import { assertIsDeliverTxSuccess, coin, SigningStargateClient } from "@cosmjs/stargate";
 import { BuildingOffice2Icon, EnvelopeIcon, UserIcon } from '@heroicons/react/24/outline'
+import { chainConfig } from "../store/chainConfig";
 
 function TableIbc() {
-
-  const chainConfig =[
-    {
-      "name": "Cosmos Hub (cosmoshub-4)",
-      "chainId":"cosmoshub-4",
-      "rpcUrl":"https://cosmos-rpc.w3coins.io",
-      "rpcImg":"https://raw.githubusercontent.com/cosmos/chain-registry/master/cosmoshub/images/atom.svg",
-      "fee": {
-        amount: [
-          {
-            denom: "uatom",
-            amount: "5000"
-          }
-        ],
-        gas: "250000"
-      }
-    },
-    {
-      "name": "Osmosis (osmosis-1)",
-      "chainId":"osmosis-1",
-      "rpcUrl":"https://rpc-osmosis.ecostake.com",
-      "rpcImg": "https://raw.githubusercontent.com/cosmos/chain-registry/master/osmosis/images/osmo.svg",
-      "fee": {
-        amount: [
-          {
-            denom: "uosmo",
-            amount: "5000"
-          }
-        ],
-        gas: "250000"
-      }},
-    {
-      "name": "Evmos (evmos_9001-2)",
-      "chainId":"evmos_9001-2",
-      "rpcUrl":"https://evmos-rpc.polkachu.com",
-      "rpcImg":"https://raw.githubusercontent.com/cosmos/chain-registry/master/evmos/images/evmos.svg",
-      "fee": {
-        amount: [
-          {
-            denom: "aevmos",
-            amount: "5000"
-          }
-        ],
-        gas: "250000"
-      }
-    },
-    {
-      "name": "IRISnet (irishub-1)",
-      "chainId":"irishub-1",
-      "rpcUrl":"https://irisnet-rpc.w3coins.io",
-      "rpcImg":"https://raw.githubusercontent.com/cosmos/chain-registry/master/irisnet/images/iris.svg",
-      "fee": {
-        amount: [
-          {
-            denom: "uiris",
-            amount: "5000"
-          }
-        ],
-        gas: "250000"
-      }
-    },
-    {
-      "name": "Crescent (crescent-1)",
-      "chainId":"crescent-1",
-      "rpcUrl":"https://crescent-rpc.w3coins.io",
-      "rpcImg":"https://raw.githubusercontent.com/cosmos/chain-registry/master/crescent/images/cre.svg",
-      "fee": {
-        amount: [
-          {
-            denom: "ucre",
-            amount: "5000"
-          }
-        ],
-        gas: "250000"
-      }
-    },
-    {
-      "name": "Canto (canto_7700-1)",
-      "chainId":"canto_7700-1",
-      "rpcUrl":"https://canto.gravitychain.io:26657",
-      "rpcImg":"https://raw.githubusercontent.com/cosmos/chain-registry/master/canto/images/canto.svg",
-      "fee": {
-        amount: [
-          {
-            denom: "ucanto",
-            amount: "5000"
-          }
-        ],
-        gas: "250000"
-      }
-    },
-  ]
 
   const [address, setAddress] = useState("");
   const [recipientAddress, setRecipientAddress] = useState("");
   const [feeAmount, setFeeAmount] = useState(chainConfig[0].fee.amount[0].amount);
   const [feeDenom, setFeeDenom] = useState(chainConfig[0].fee.amount[0].denom);
   const [transferAmount, setTransferAmount] = useState();
-  const configAddr = chainConfig[0];
+  const [configAddr, setConfigAddr] = useState(chainConfig[0]);
   const chainId = configAddr.chainId;
 
 
@@ -128,11 +37,11 @@ function TableIbc() {
       );
 
       const balances = await client.getAllBalances(senderAddress);
-      console.log("iki balance e", balances);
+      console.log(balances);
 
       const transferAmountObj = {
-        denom: feeDenom, // Menggunakan denom dari feeDenom
-        amount: transferAmount, // Menggunakan nilai dari transferAmount
+        denom: feeDenom,
+        amount: transferAmount,
       };
       const sourcePort = "transfer";
       const sourceChannel = "channel-141";
@@ -186,8 +95,7 @@ function TableIbc() {
       ))}
     </div>
 
-      {/* iki */}
-      <div className="mx-auto grid max-w-7xl grid-cols-1 lg:grid-cols-2">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 lg:grid-cols-2 ">
         <div className="relative px-6 pb-20 pt-24 sm:pt-32 lg:static lg:px-8 lg:py-48">
           <div className="mx-auto max-w-xl lg:mx-0 lg:max-w-lg">
             <div className="absolute inset-y-0 left-0 -z-10 w-full overflow-hidden ring-1 ring-white/5 lg:w-1/2">
@@ -225,7 +133,7 @@ function TableIbc() {
                 />
               </div>
             </div>
-            <h2 className="text-3xl font-bold tracking-tight text-white">Linken Bridge</h2>
+            <h2 className="text-3xl font-bold tracking-tight text-cyan-500">Linken Bridge</h2>
             <p className="mt-6 text-lg leading-8 text-gray-300">
               We recommend you try to send a small amount first before trying to send large amounts. This way you can make sure everything works as expected.
             </p>
@@ -257,7 +165,6 @@ function TableIbc() {
         </div>
         <form className="px-6 pb-24 pt-20 sm:pb-32 lg:px-8 lg:py-48" onSubmit={(e) => {
     e.preventDefault();
-    console.log("tes123");
     sendIbcTokens() 
   }}>
           <div className="mx-auto max-w-xl lg:mr-0 lg:max-w-lg">
